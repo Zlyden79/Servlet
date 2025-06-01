@@ -9,7 +9,7 @@ public class TestPostRepository {
 
     @Test
     void testSave(){
-        PostRepository repository = PostRepository.getInstance();
+        PostRepository repository = new PostRepository();
         Post post1 = new Post();
         post1.setContent("first post");
         repository.save(post1);

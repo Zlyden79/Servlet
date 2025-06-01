@@ -9,28 +9,16 @@ import java.util.concurrent.atomic.AtomicLong;
 
 // Singletone
 public class PostRepository {
-    public volatile static PostRepository instance;
     // храним в мапе для быстрого поиска, key = Post.getId();
     private final Map<Long, Post> repo;
     //сюда запоминаем последний id для постов
     private volatile AtomicLong lastId;
 
 
-    private PostRepository() {
+    public PostRepository() {
         this.repo = new ConcurrentHashMap<>();
         this.lastId = new AtomicLong();
         lastId.set(0l);
-    }
-
-    public static PostRepository getInstance() {
-        if (instance == null) {
-            synchronized (PostRepository.class) {
-                if (instance == null) {
-                    instance = new PostRepository();
-                }
-            }
-        }
-        return instance;
     }
 
     public List<Post> all() {

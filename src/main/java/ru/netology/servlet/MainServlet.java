@@ -25,7 +25,7 @@ public class MainServlet extends HttpServlet {
 
     @Override
     public void init() {
-        final PostRepository repository = PostRepository.getInstance();
+        final PostRepository repository = new PostRepository();
         System.out.println(repository);
         final var service = new PostService(repository);
         controller = new PostController(service);
